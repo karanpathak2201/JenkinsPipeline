@@ -2,14 +2,23 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the source code from your version control system (e.g., Git)
+                git 'https://github.com/karanpathak2201/JenkinsPipeline.git'
+               
+            }
+        }
         stage('Build') {
             steps {
-                sh 'mvn clean package -B'
+                // Build the Spring Boot application using Maven
+                bat 'mvn clean package -B'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test -B'
+                // Run unit tests for the Spring Boot application
+                bat 'mvn test -B'
             }
         }
     }
